@@ -4,7 +4,7 @@ import sys
 
 import scrapy
 
-from crawler_jijin.items import CrawlerJijinItem
+from items import CrawlerJijinItem
 
 reload(sys)
 sys.setdefaultencoding('utf-8')

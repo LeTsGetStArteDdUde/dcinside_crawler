@@ -11,9 +11,8 @@
 
 BOT_NAME = 'crawler_jijin'
 
-SPIDER_MODULES = ['crawler_jijin.spiders']
-NEWSPIDER_MODULE = 'crawler_jijin.spiders'
-
+SPIDER_MODULES = ['spiders']
+NEWSPIDER_MODULE = 'spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'crawler_jijin (+http://www.yourdomain.com)'
@@ -47,13 +46,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'crawler_jijin.middlewares.MyCustomSpiderMiddleware': 543,
+#    'middlewares.MyCustomSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'crawler_jijin.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +64,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'crawler_jijin.pipelines.CrawlerJijinPipeline': 300,
+	'pipelines.CrawlerJijinPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
