@@ -9,7 +9,10 @@ from __future__ import unicode_literals
 import time
 import logging
 import sys
-import MySQLdb.cursors
+import mysql.connector
+from mysql.connector import errorcode
+#import MySQLdb
+#import MySQLdb.cursors
 #from sshtunnel import SSHTunnelForwarder
 from scrapy.exceptions import DropItem
 
@@ -23,12 +26,10 @@ class CrawlerJijinPipeline(object):
             #    remote_bind_address=('192.168.0.1', 22)
             #)
             #server.start()
-            self.conn = MySQLdb.connect(user='root', passwd='root', db='crawling', host='192.168.0.1', charset="utf8",
-                                        use_unicode=True)
-            #self.conn = MySQLdb.connect(user='root',passwd='root',db='crawling',host='192.168.0.1',port=3306)
+            self.conn = mysql.connector.connect(user='root', password='root', database='crawling', host='192.168.0.1', port=3306)
             self.cursor = self.conn.cursor()
-        except MySQLdb.Error, e:
-            print "Error %d: %s" % (e.args[0], e.args[1])
+        except mysql.connector.Error as e:
+            print(e)
             sys.exit(1)
 
     def process_item(self, item, spider):
@@ -54,8 +55,8 @@ class CrawlerJijinPipeline(object):
                              item['writer'][x].encode('utf-8')))
                         self.conn.commit()
                         break
-                    except MySQLdb.Error, e:
-                        print "update Error %d: %s" % (e.args[0], e.args[1])
+                    except mysql.connector.Error as e:
+                        print(e)
         s1 = set(item_temp)
         s2 = set([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29])
         s3 = s2 - s1
@@ -71,7 +72,8 @@ class CrawlerJijinPipeline(object):
                     "http://gall.dcinside.com" + item['link'][item_for_insert[i]].encode('utf-8'),
                     d_crawl_date))
                 self.conn.commit()
-            except MySQLdb.Error, e:
-                print "insert Error %d: %s" % (e.args[0], e.args[1])
+            except mysql.connector.Error as e:
+                print(e)
+                
 
 
